@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>H & F</title>
+</head>
+<body>
+{% block header %}
+<header>
+<div style="display: flex ;align-items: center; justify-content: center; position: absolute; top: 0px; left: 40%; ">
+    <img src="{% static 'images/FH_Dortmund-logo.png' %}" alt="FH Dortmund Logo" style="width: 200px; height: 80px ; align-content: center;">
+</div>
+</header>
+<br><br><br><br>
+{% endblock header %}
+
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+<footer style=";">
+    <div style="display: flex ;align-items: center; justify-content: center; position: absolute; bottom: 0px; left: 33%; "><h3>Disclaimer - Copyright Bruno Hyska - All Rights Reserved</h3></div>
+</footer>
+{% endblock footer %}
+</body>
+</html>
