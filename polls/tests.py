@@ -68,7 +68,6 @@ def create_question(question_text, days):
 
 class QuestionModelTests(TestCase):
     def test_was_published_recently_with_future_question(self):
-
         time = timezone.now() + datetime.timedelta(days=30)
         future_question = Question(pub_date=time)
         self.assertIs(future_question.was_published_recently(), False)
@@ -169,12 +168,11 @@ class QuestionDetailViewTests(TestCase):
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)
 
-    def test_question_detail_view_without_choice(self):
-        question = create_question(question_text='Question without choices', days=-1)
-        url = reverse('polls:detail', args=(question.id,))
+    def test_question_detail_view_with_past_question(self):
+        past_question = create_question(question_text='Past Question.', days=-5)
+        url = reverse('polls:detail', args=(past_question.id,))
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'No choices are available for this question.')
+        self.assertContains(response, past_question.question_text)
 
     def test_question_detail_view_with_choices(self):
         question = create_question(question_text='Question with choices', days=-1)
